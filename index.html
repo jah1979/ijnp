@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="af">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#110c17">
+  <meta name="description" content="Net een belangrike vraag. JA of NEE?">
+  <title>Is jy 'n poes?</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #110c17;
+      color: #fff6fb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100svh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse at 50% -15%, #551331 0%, transparent 55%),
+        radial-gradient(ellipse at 100% 100%, #301441 0%, transparent 50%),
+        #110c17;
+    }
+    main { width: min(100%, 570px); text-align: center; }
+    .eyebrow {
+      display: inline-block;
+      padding: 9px 17px;
+      border: 1px solid #86556f;
+      border-radius: 999px;
+      color: #ffc1e6;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: clamp(3rem, 9vw, 5.8rem);
+      line-height: 1.02;
+      letter-spacing: -.06em;
+      margin: 30px 0 37px;
+      font-weight: 950;
+      text-wrap: balance;
+    }
+    .choices { display: grid; gap: 17px; }
+    button {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      width: 100%;
+      min-height: 92px;
+      padding: 18px;
+      border-radius: 18px;
+      font: inherit;
+      font-size: clamp(2rem, 6vw, 2.7rem);
+      font-weight: 950;
+      letter-spacing: .045em;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: transform .17s ease, box-shadow .17s ease, filter: .17s ease;
+    }
+    button:hover { transform: translateY(-3px); filter: brightness(1.07); }
+    button:active { transform: translateY(0) scale(.98); }
+    button:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
+    #ja {
+      border: 2px solid #ff9edb;
+      background: linear-gradient(120deg, #ff088d 0%, #ff48b6 52%, #ff0088 100%);
+      color: #fff;
+      text-shadow: 0 2px 10px #8f003f88;
+      box-shadow: 0 10px 35px #ff009657, inset 0 2px 0 #ffffff66;
+    }
+    #ja::before {
+      content: "";
+      position: absolute;
+      inset: -110% auto -110% -65%;
+      width: 38%;
+      transform: rotate(24deg);
+      background: linear-gradient(90deg, transparent, #ffffff55, transparent);
+      animation: shine 3.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    #ja:hover { box-shadow: 0 14px 44px #ff009680, inset 0 2px 0 #ffffff66; }
+    #nee {
+      border: 2px solid #5e5669;
+      background: linear-gradient(135deg, #373040, #211b2d);
+      color: #f6e6f0;
+      box-shadow: 0 8px 25px #00000042, inset 0 2px 0 #ffffff12;
+    }
+    #antwoord {
+      min-height: 78px;
+      margin: 30px auto 0;
+      font-size: clamp(1.15rem, 3.5vw, 1.5rem);
+      line-height: 1.45;
+      font-weight: 750;
+      color: #ffd1eb;
+    }
+    #antwoord:empty { visibility: hidden; }
+    .hint { color: #aea1b1; font-size: .84rem; margin: 0; }
+    @keyframes shine {
+      0%, 17% { left: -65%; }
+      37%, 100% { left: 130%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      button { transition: none; }
+      #ja::before { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="eyebrow">Net een vraag</span>
+    <h1>Is jy 'n poes?</h1>
+    <div class="choices" role="group" aria-label="Kies jou antwoord">
+      <button type="button" id="ja">JA 💖</button>
+      <button type="button" id="nee">NEE</button>
+    </div>
+    <p id="antwoord" role="status" aria-live="polite"></p>
+    <p class="hint">Kies versigtig. 😏</p>
+  </main>
+  <script>
+    const antwoord = document.getElementById('antwoord');
+    document.getElementById('ja').addEventListener('click', () => {
+      antwoord.textContent = 'Dankie vir jou eerlikheid. Respek! 🤘';
+    });
+    document.getElementById('nee').addEventListener('click', () => {
+      antwoord.textContent = "Dis presies wat 'n poes sou sê. 😂";
+    });
+  </script>
+</body>
+</html>
